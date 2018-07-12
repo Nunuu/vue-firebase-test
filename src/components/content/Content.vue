@@ -16,11 +16,15 @@ export default {
   name: 'Content',
   methods: {
     onAddHost() {
-      const randomHost = Mock.getRandomHost();
+      const seed = (Math.random().toString(16)+'000000000').substr(2,8);
+      const randomHost = {
+        id: 'random-host-' + seed, 
+        name: 'A Random Host (' + seed + ')'
+      };
       this.$emit('add-host', randomHost);
     },
     onToggleError() {
-      Mock.toggleMode();
+      this.$emit('toggle-error');
     }
   }
 }
@@ -41,12 +45,6 @@ $darkenPerc: 10%
 button
   color: white
   font-size: 1.8em
-  padding: 1em
-  padding: 10px 16px
-  border-radius: 6px
-  cursor: pointer
-  transition: background 0.3s ease-out
-  line-height: 1.5em
   margin-right: 5px
   &:last-child
     margin-right: 0
